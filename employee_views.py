@@ -13,7 +13,17 @@ class DbConnect:
         except Exception as e:
             return None
 class EmployeeManager(DbConnect):
-    pass
+    def get_object(self,id=None):
+        try:
+            self.connect = super().get_connect()
+            self.cursor = self.connect.cursor()
+            query = "select * from employee where id=%s"
+            values = (id,)
+            self.cursor.execute(query, values)
+            records = self.cursor.fetchone()
+            return records
+        except Exception as e:
+            return None
 
 connection_instance=DbConnect()
 connection_instance.get_connection()
