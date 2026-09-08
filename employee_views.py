@@ -15,7 +15,7 @@ class DbConnect:
 class EmployeeManager(DbConnect):
     def get_object(self,id=None):
         try:
-            self.connect = super().get_connect()
+            self.connect = super().get_connection()
             self.cursor = self.connect.cursor()
             query = "select * from employee where id=%s"
             values = (id,)
